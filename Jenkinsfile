@@ -29,7 +29,7 @@ podTemplate(yaml: '''
 ''') {
   node(POD_LABEL) {
     stage('Get a Maven project') {
-      git url: 'https://github.com/scriptcamp/kubernetes-kaniko.git', branch: 'main'
+      git url: 'https://github.com/dunguyenvan/kubernetes-kaniko.git', branch: 'main'
       container('maven') {
         stage('Build a Maven project') {
           sh '''
@@ -43,7 +43,7 @@ podTemplate(yaml: '''
       container('kaniko') {
         stage('Build a Go project') {
           sh '''
-            /kaniko/executor --context `pwd` --destination bibinwilson/hello-kaniko:1.0
+            /kaniko/executor --context `pwd` --destination registry.fke.fptcloud.com/51fece1a-f372-412f-851d-58d4cb9959ce/hello-kaniko:1.0
           '''
         }
       }
